@@ -31,6 +31,7 @@ class LoginScreen extends StatelessWidget {
       final result = await oauth.login();
       result.fold(
           (failure) => print(failure.toString()), (token) => print("$token")
+
           //showMessage('Logged in successfully, your access token: $token'),
           );
       String? accessToken = await oauth.getAccessToken();
@@ -57,9 +58,9 @@ class LoginScreen extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
-  final String accessToken;
+  final String? accessToken;
   final Config configB2Ca;
-  HomePage({required this.accessToken, required this.configB2Ca});
+  HomePage({this.accessToken, required this.configB2Ca});
 
   Future<void> logout(BuildContext context) async {
     final AadOAuth oauth = AadOAuth(configB2Ca);
